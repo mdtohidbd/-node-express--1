@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
+
+app.use(cors());
 
 const users = [
     { id: 1, name: 'tohid', email: 'tohid2232@gmail.com' },
@@ -9,16 +12,19 @@ const users = [
     { id: 3, name: 'Md tohidul', email: 'mdtohid2232@gmail.com' },
 ];
 
-
 app.get('/', (req, res) => {
     res.send('Users Management Server is running');
 })
 
-
 app.get('/users', (req, res) => {
-    res.send(users);
-    
+    res.send(users);   
 })
+
+app.post('/users', (req, res) =>{
+    console.log('post api hitting')
+    console.log(req.body);
+})
+
 
 app.listen(port, () => {
     console.log(`Server is running on PORT:${port}`);
